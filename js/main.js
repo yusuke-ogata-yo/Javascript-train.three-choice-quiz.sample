@@ -63,6 +63,8 @@
     } else {
       li.classList.add('wrong');
     }
+
+    btn.classList.remove('disabled');
   }
   /**
    * 問題と選択肢を取り出して画面に表示する
@@ -80,6 +82,12 @@
     // []を付けることで、新たな配列を作成して、引数とする
     const shuffledChoices = shuffle([...quizSet[currentNum].c]);
     
+    // 選択肢を追加する前に、すでに選択肢が
+    // 設定されていたら、それらの選択肢を削除する
+    while (choices.firstChild) {
+      choices.removeChild(choices.firstChild);
+    }
+
     // シャッフルした選択肢を画面に表示
     shuffledChoices.forEach(choice => {
       const li = document.createElement('li');
@@ -95,5 +103,10 @@
 
   setQuiz();
 
+  // nextボタンをクリックしたら、次の問題に進む
+  btn.addEventListener('click', () => {
+    currentNum++;
+    setQuiz();
+  });
 
 }
