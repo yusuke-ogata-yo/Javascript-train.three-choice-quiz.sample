@@ -41,7 +41,7 @@
 
 
   /**
-   * 
+   * 選択した回答の正誤を判定する
    * @param {HTMLLIElement} li 
    */
   function checkAnswer(li) {
@@ -69,8 +69,9 @@
     shuffledChoices.forEach(choice => {
       const li = document.createElement('li');
       li.textContent = choice;
-      //
+      // 選択肢をクリックした場合、正誤判定を実施
       li.addEventListener('click', () => {
+        // 正誤判定プログラムの呼び出し
         checkAnswer(li);
       });
       choices.appendChild(li);
