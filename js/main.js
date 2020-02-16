@@ -99,12 +99,22 @@
       });
       choices.appendChild(li);
     });
+
+    if (currentNum === quizSet.length - 1) {
+      btn.textContent = 'show score';
+    }
   }
 
   setQuiz();
 
   // nextボタンをクリックしたら、次の問題に進む
   btn.addEventListener('click', () => {
+    // nextボタンがdisabled(無効)状態のときは処理をしない
+    if (btn.classList.contains('disabled')) {
+      return;
+    }
+    // nextボタンをdisabled状態にして次の問題を表示
+    btn.classList.add('disabled');
     currentNum++;
     setQuiz();
   });
