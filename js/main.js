@@ -4,6 +4,8 @@
   const question = document.getElementById('question');
   const choices = document.getElementById('choices');
   const btn = document.getElementById('btn');
+  const result = document.getElementById('result');
+  const scoreLabel = document.querySelector('#result > p');
 
   /**
    * 問題のセット
@@ -125,7 +127,8 @@
 
     // スコアを表示
     if (currentNum === quizSet.length - 1) {
-      console.log(`Score: ${score} / ${quizSet.length}`);
+      scoreLabel.textContent = `Score: ${score} / ${quizSet.length}`;
+      result.classList.remove('hidden');
     } else {
       currentNum++;
       setQuiz();
