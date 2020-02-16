@@ -46,9 +46,9 @@
    */
   function checkAnswer(li) {
     if (li.textContent === quizSet[currentNum].c[0]){
-      console.log("correct");
+      li.classList.add('correct');
     } else {
-      console.log("wrong");
+      li.classList.add('wrong');
     }
   }
   /**
