@@ -17,9 +17,15 @@
 
   /**
    * 現在までの問題数
-   * @type number
+   * @type {number}
    */
   let currentNum = 0;
+
+  /**
+   * すでに回答をした場合、true
+   * @type {boolean}
+   */
+  let isAnswered = false;
 
   /**
    * フィッシャー・イェーツのシャッフル。
@@ -45,6 +51,13 @@
    * @param {HTMLLIElement} li 
    */
   function checkAnswer(li) {
+    // 一度回答したらその後の処理はしない(一度しか回答できない)
+    if (isAnswered) {
+      return;
+    }
+    // 回答したフラグを立てる
+    isAnswered = true;
+
     if (li.textContent === quizSet[currentNum].c[0]){
       li.classList.add('correct');
     } else {
@@ -55,6 +68,8 @@
    * 問題と選択肢を取り出して画面に表示する
    */
   function setQuiz() {
+    // 回答していない状態に設定
+    isAnswered = false;
     // 問題を取り出して画面に表示
     question.textContent = quizSet[currentNum].q;
   
