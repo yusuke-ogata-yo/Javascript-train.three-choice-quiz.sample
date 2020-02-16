@@ -12,9 +12,9 @@
    * @type {object[string, string[]]}
    */
   const quizSet = shuffle([
-    {q: 'What is A?', c: ['A0', 'A1', 'A2']},
-    {q: 'What is B?', c: ['B0', 'B1', 'B2']},
-    {q: 'What is C?', c: ['C0', 'C1', 'C2']},
+    {q: '世界で一番大きな湖は？', c: ['カスピ海', 'カリブ海', '琵琶湖']},
+    {q: '2の8乗は？', c: ['256', '64', '1024']},
+    {q: '次のうち、最初にリリースされた言語は？', c: ['Python', 'JavaScript', 'HTML']},
   ]);
 
   /**
