@@ -7,7 +7,7 @@
 
   /**
    * 問題のセット
-   * @type [any]
+   * @type {object[string, string[]]}
    */
   const quizSet = [
     {q: 'What is A?', c: ['A0', 'A1', 'A2']},
@@ -21,14 +21,11 @@
    */
   let currentNum = 0;
 
-  // 問題を取り出して画面に表示
-  question.textContent = quizSet[currentNum].q;
-
   /**
    * フィッシャー・イェーツのシャッフル。
    * シャッフルしたい配列が引数。シャッフルした配列を返す。
-   * @param [any] arr 
-   * @return [any]
+   * @param {any[]} arr 
+   * @return {any[]}
    */
   function shuffle(arr) {
     let i = arr.length -1;
@@ -42,17 +39,45 @@
     return arr;
   }
 
-  // 選択肢をシャッフルする
-  // 関数の引数にオブジェクトを渡すと、オブジェクトの参照が渡されるので
-  // 引数に変更をくわえると、元のオブジェクトも書き変わってしまう。
-  // 今回は、困るので、スプリット演算子(...)により、配列を展開し
-  // []を付けることで、新たな配列を作成して、引数とする
-  const shuffledChoices = shuffle([...quizSet[currentNum].c]);
-  // シャッフルした選択肢を画面に表示する
-  shuffledChoices.forEach(choice => {
-    const li = document.createElement('li');
-    li.textContent = choice;
-    choices.appendChild(li);
-  });
+
+  /**
+   * 
+   * @param {HTMLLIElement} li 
+   */
+  function checkAnswer(li) {
+    if (li.textContent === quizSet[currentNum].c[0]){
+      console.log("correct");
+    } else {
+      console.log("wrong");
+    }
+  }
+  /**
+   * 問題と選択肢を取り出して画面に表示する
+   */
+  function setQuiz() {
+    // 問題を取り出して画面に表示
+    question.textContent = quizSet[currentNum].q;
+  
+    // 選択肢をシャッフルする
+    // 関数の引数にオブジェクトを渡すと、オブジェクトの参照が渡されるので
+    // 引数に変更をくわえると、元のオブジェクトも書き変わってしまう。
+    // 今回は、困るので、スプリット演算子(...)により、配列を展開し
+    // []を付けることで、新たな配列を作成して、引数とする
+    const shuffledChoices = shuffle([...quizSet[currentNum].c]);
+    
+    // シャッフルした選択肢を画面に表示
+    shuffledChoices.forEach(choice => {
+      const li = document.createElement('li');
+      li.textContent = choice;
+      //
+      li.addEventListener('click', () => {
+        checkAnswer(li);
+      });
+      choices.appendChild(li);
+    });
+  }
+
+  setQuiz();
+
 
 }
