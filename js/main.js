@@ -42,8 +42,14 @@
     return arr;
   }
 
-  // 選択肢を画面に表示する
-  quizSet[currentNum].c.forEach(choice => {
+  // 選択肢をシャッフルする
+  // 関数の引数にオブジェクトを渡すと、オブジェクトの参照が渡されるので
+  // 引数に変更をくわえると、元のオブジェクトも書き変わってしまう。
+  // 今回は、困るので、スプリット演算子(...)により、配列を展開し
+  // []を付けることで、新たな配列を作成して、引数とする
+  const shuffledChoices = shuffle([...quizSet[currentNum].c]);
+  // シャッフルした選択肢を画面に表示する
+  shuffledChoices.forEach(choice => {
     const li = document.createElement('li');
     li.textContent = choice;
     choices.appendChild(li);
