@@ -27,7 +27,10 @@
    */
   let isAnswered = false;
 
-
+  /**
+   * 正解した数
+   * @type {number}
+   */
   let score = 0;
 
   /**
@@ -120,6 +123,7 @@
     // nextボタンをdisabled状態にして次の問題を表示
     btn.classList.add('disabled');
 
+    // スコアを表示
     if (currentNum === quizSet.length - 1) {
       console.log(`Score: ${score} / ${quizSet.length}`);
     } else {
